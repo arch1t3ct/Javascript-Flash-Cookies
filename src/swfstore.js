@@ -60,7 +60,8 @@
 			debug: false,
 			timeout: 10,
 			onready: null,
-			onerror: null
+			onerror: null,
+                        replace: false
 		};
 		var key;
 		for(key in defaults){
@@ -80,13 +81,28 @@
 		
 		// a couple of basic timesaver functions
 		function id(){
-			return "SwfStore_" + config.namespace + "_" +  (counter++);
+                        if(!config.replace){
+                                counter++;
+                        }
+                        
+			return "SwfStore_" + config.namespace + "_" + counter;
 		}
 		
 		function div(visible){
 			var d = document.createElement('div');
-			document.body.appendChild(d);
+			
 			d.id = id();
+                        
+                        if(config.replace){
+                                var old = document.getElementById(d.id);
+
+                                if (null !== old) {
+                                        document.body.removeChild(old);
+                                }
+                        }
+                        
+                        document.body.appendChild(d);
+                        
 			if(!visible){
 				// setting display:none causes the .swf to not render at all
 				d.style.position = "absolute";
@@ -166,7 +182,7 @@
 
 	SwfStore.prototype = {
   
-		version: "1.7",
+		version: "1.8.1",
 		
 		/**
 		 * This is an indicator of whether or not the SwfStore is initialized. 

@@ -45,6 +45,10 @@ Contributors
 Changelog
 ---------
 
+### 1.8.1 - 2012-11-23
+* Added support for replacing embedded flash object instead of embedding additional ones.
+* Set proper SwfStore version.
+
 ### 1.8 - 2012-03-27
 * Added support for setting the LSOPath to allow other .swf files to read & write SwfStore's objects
 
