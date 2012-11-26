@@ -80,11 +80,13 @@
 		this.config = config;
 		
 		// a couple of basic timesaver functions
-		function id(){
+		function id(suffix){
                         if(!config.replace){
                                 counter++;
+                        } else {
+								counter += suffix;
                         }
-                        
+						
 			return "SwfStore_" + config.namespace + "_" + counter;
 		}
 		
@@ -144,7 +146,7 @@
 	
 		var swfContainer = div(config.debug);
 		
-		var swfName = id();
+		var swfName = id('flash');
 		
 		var flashvars = "logfn=SwfStore." + config.namespace + ".log&amp;" + 
 			"onload=SwfStore." + config.namespace + ".onload&amp;" +  // "onload" sets this.ready and then calls the "onready" config option
